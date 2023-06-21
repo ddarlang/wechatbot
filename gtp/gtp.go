@@ -26,13 +26,13 @@ type ChoiceItem struct {
 
 // ChatGPTRequestBody 响应体
 type ChatGPTRequestBody struct {
-	Model            string  `json:"model"`
-	Prompt           string  `json:"prompt"`
-	MaxTokens        int     `json:"max_tokens"`
-	Temperature      float32 `json:"temperature"`
-	TopP             int     `json:"top_p"`
-	FrequencyPenalty int     `json:"frequency_penalty"`
-	PresencePenalty  int     `json:"presence_penalty"`
+    Model            string  `json:"model"`
+    Prompt           string  `json:"prompt"`
+    MaxTokens        int     `json:"max_tokens"`
+    Temperature      float32 `json:"temperature"`
+    TopP             float32 `json:"top_p"` 
+    FrequencyPenalty float32 `json:"frequency_penalty"`
+    PresencePenalty  float32 `json:"presence_penalty"`
 }
 
 // Completions gtp文本模型回复
@@ -44,10 +44,10 @@ func Completions(msg string) (string, error) {
 	requestBody := ChatGPTRequestBody{
 		Model:            "text-davinci-003",
 		Prompt:           msg,
-		MaxTokens:        2048,
+		MaxTokens:        1024,
 		Temperature:      0.7,
-		TopP:             1,
-		FrequencyPenalty: 0,
+		TopP:             0.3,
+		FrequencyPenalty: 0.5,
 		PresencePenalty:  0,
 	}
 	requestData, err := json.Marshal(requestBody)
